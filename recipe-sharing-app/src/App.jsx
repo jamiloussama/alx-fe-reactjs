@@ -4,6 +4,7 @@ import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import AddRecipeForm from './components/AddRecipeForm';
 
+
 const App = () => {
   return (
     <Router>
@@ -14,7 +15,7 @@ const App = () => {
           <Link to="/">Home</Link> | <Link to="/add-recipe">Add Recipe</Link>
         </nav>
         <hr />
-
+        
         <Routes>
           {/* Main route for displaying the recipe list */}
           <Route path="/" element={<RecipeList />} />
