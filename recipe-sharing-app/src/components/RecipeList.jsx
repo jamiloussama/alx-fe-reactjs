@@ -5,6 +5,9 @@ import SearchBar from './SearchBar';
 
 const RecipeList = () => {
   const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+  const addFavorite = useRecipeStore((state) => state.addFavorite);
+  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+  const favorites = useRecipeStore((state) => state.favorites);
 
   return (
     <div>
@@ -18,6 +21,15 @@ const RecipeList = () => {
             <p>{recipe.description}</p>
             {/* Add Link to navigate to recipe details */}
             <Link to={`/recipes/${recipe.id}`}>View Details</Link>
+            <button
+            onClick={() =>
+              favorites.includes(recipe.id)
+                ? removeFavorite(recipe.id)
+                : addFavorite(recipe.id)
+            }
+          >
+            {favorites.includes(recipe.id) ? 'Unfavorite' : 'Favorite'}
+          </button>
           </div>
         ))
       )}
