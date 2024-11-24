@@ -2,11 +2,9 @@ import React, { useState } from "react";
 
 const RegistrationForm = () => {
   // State to store form input values
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // State for storing validation errors
   const [errors, setErrors] = useState({});
@@ -14,15 +12,18 @@ const RegistrationForm = () => {
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "username") setUsername(value);
+    if (name === "email") setEmail(value);
+    if (name === "password") setPassword(value);
   };
 
   // Simple validation for the form fields
   const validate = () => {
     const newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required.";
-    if (!formData.email) newErrors.email = "Email is required.";
-    if (!formData.password) newErrors.password = "Password is required.";
+    if (!username) newErrors.username = "Username is required.";
+    if (!email) newErrors.email = "Email is required.";
+    if (!password) newErrors.password = "Password is required.";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -31,7 +32,7 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form submitted:", formData);
+      console.log("Form submitted:", { username, email, password });
       alert("Registration successful!");
     }
   };
@@ -43,8 +44,8 @@ const RegistrationForm = () => {
         <input
           type="text"
           name="username"
-          value={formData.username} // Bind the input value to state
-          onChange={handleChange} // Update state on change
+          value={username} // Using value={username}
+          onChange={handleChange}
         />
         {errors.username && <p>{errors.username}</p>}
       </div>
@@ -53,8 +54,8 @@ const RegistrationForm = () => {
         <input
           type="email"
           name="email"
-          value={formData.email} // Bind the input value to state
-          onChange={handleChange} // Update state on change
+          value={email} // Using value={email}
+          onChange={handleChange}
         />
         {errors.email && <p>{errors.email}</p>}
       </div>
@@ -63,8 +64,8 @@ const RegistrationForm = () => {
         <input
           type="password"
           name="password"
-          value={formData.password} // Bind the input value to state
-          onChange={handleChange} // Update state on change
+          value={password} // Using value={password}
+          onChange={handleChange}
         />
         {errors.password && <p>{errors.password}</p>}
       </div>
