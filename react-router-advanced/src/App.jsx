@@ -8,6 +8,8 @@ const App = () => {
       <Routes>
         <Route path="profile/*" element={<Profile />} />
         {/* Other routes can go here */}
+        <Route path="/blog/:id" element={<BlogPost />} /> {/* Dynamic route for blog post */}
+
       </Routes>
     </Router>
   );
