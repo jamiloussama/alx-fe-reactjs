@@ -9,11 +9,14 @@ const AddRecipeForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Handle change for form inputs
   const handleChange = (e) => {
+    console.log(e.target.name, e.target.value); // Debugging
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Validate form data
   const validateForm = () => {
     const errors = {};
     if (!formData.title.trim()) errors.title = "Title is required";
@@ -22,6 +25,7 @@ const AddRecipeForm = () => {
     return errors;
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
