@@ -10,6 +10,7 @@ const AddRecipeForm = () => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
+    console.log(e.target.name, e.target.value); // Debugging
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
