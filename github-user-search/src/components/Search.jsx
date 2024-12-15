@@ -20,6 +20,8 @@ const Search = () => {
 
     try {
       const query = { username, location, minRepos };
+      const dataq = await fetchUserData(query);  // Call the correct function
+
       const data = await fetchAdvancedSearchResults(query);
       setResults(data.items || []);
     } catch (err) {
